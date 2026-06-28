@@ -483,12 +483,13 @@
             </div>
           </div>
           <div class="grid" id="posts">
-            <p id="status">Loading posts...</p>
+            <!-- <p id="status">Loading posts...</p> -->
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Blog auth gating temporarily disabled for current testing phase:
     <div id="auth-modal" class="auth-modal hidden">
       <div class="auth-card">
         <h3>Secure access</h3>
@@ -502,8 +503,10 @@
         <div class="auth-status" id="auth-status"></div>
       </div>
     </div>
+    -->
 
     <script>
+      /*
       const modal = document.getElementById("auth-modal");
       const appShell = document.getElementById("app-shell");
       const statusEl = document.getElementById("auth-status");
@@ -535,8 +538,10 @@
         window.pendingAuthUrl = card.getAttribute("href");
         showModal();
       });
+      */
     </script>
 
+    <!-- Firebase authentication module temporarily disabled for current testing phase:
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
       import {
@@ -611,6 +616,7 @@
         window.hideAuthModal();
       });
     </script>
+    -->
 
     <script>
       const PROJECT_ID = "xsd8o1za";
