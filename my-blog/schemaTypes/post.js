@@ -63,6 +63,19 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'postType',
+      title: 'Post Type',
+      type: 'string',
+      initialValue: 'blog',
+      options: {
+        list: [
+          {title: 'Blog', value: 'blog'},
+          {title: 'Journal', value: 'journal'},
+        ],
+        layout: 'dropdown',
+      },
+    }),
+    defineField({
       name: 'excerpt',
       title: 'Excerpt',
       type: 'text',

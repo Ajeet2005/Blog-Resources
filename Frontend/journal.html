@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="favicon.png" type="image/png+xml" />
-    <title>My Blog</title>
+    <title>My Journal</title>
     <style>
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-      /*  */
+
       :root {
         --bg: #f9f9f9;
         --surface: #ffffff;
@@ -131,7 +131,6 @@
         align-items: flex-start;
       }
 
-      /* SIDEBAR */
       aside {
         width: 240px;
         flex-shrink: 0;
@@ -237,7 +236,6 @@
         background: var(--tag-hover-bg);
       }
 
-      /* MAIN */
       .main-content {
         flex: 1;
         min-width: 0;
@@ -259,7 +257,6 @@
         margin-top: 4px;
       }
 
-      /* GRID */
       .grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -398,95 +395,16 @@
         margin-top: 60px;
         grid-column: 1/-1;
       }
-
-      .app-shell {
-        transition:
-          opacity 0.2s ease,
-          filter 0.2s ease;
-      }
-      .app-shell.dimmed {
-        opacity: 0.35;
-        filter: blur(1.5px);
-        pointer-events: none;
-      }
-
-      .auth-modal {
-        position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        background: rgba(9, 14, 24, 0.68);
-        backdrop-filter: blur(6px);
-        z-index: 1000;
-      }
-      .auth-modal.hidden {
-        display: none;
-      }
-      .auth-card {
-        width: min(100%, 420px);
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
-        padding: 24px;
-      }
-      .auth-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: 8px;
-      }
-      .auth-card p {
-        color: var(--text-muted);
-        font-size: 0.95rem;
-        margin-bottom: 16px;
-        line-height: 1.5;
-      }
-      .auth-card input {
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        margin-bottom: 10px;
-        font-size: 0.95rem;
-      }
-      .auth-card button {
-        width: 100%;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        padding: 10px 12px;
-        font-weight: 600;
-        cursor: pointer;
-        margin-top: 4px;
-      }
-      .auth-card button:hover {
-        background: #1d4ed8;
-      }
-      .auth-card .secondary {
-        margin-top: 10px;
-        text-align: center;
-        color: var(--text-faint);
-        font-size: 0.9rem;
-        cursor: pointer;
-      }
-      .auth-status {
-        min-height: 20px;
-        margin-top: 10px;
-        color: #dc2626;
-        font-size: 0.9rem;
-      }
     </style>
   </head>
   <body>
     <div class="app-shell" id="app-shell">
       <header>
         <div class="header-left">
-          <h1>My Blog</h1>
+          <h1>My Journal</h1>
           <nav class="nav-links">
-            <a class="nav-link active" href="index.html">Blog</a>
-            <a class="nav-link" href="journal.html">Journal</a>
+            <a class="nav-link" href="index.html">Blog</a>
+            <a class="nav-link active" href="journal.html">Journal</a>
           </nav>
         </div>
         <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">
@@ -519,152 +437,21 @@
         <div class="main-content">
           <div class="content-header">
             <div>
-              <h2>All Posts</h2>
+              <h2>My Journal</h2>
               <p class="post-count" id="post-count"></p>
             </div>
           </div>
-          <div class="grid" id="posts">
-            <!-- <p id="status">Loading posts...</p> -->
-          </div>
+          <div class="grid" id="posts"></div>
         </div>
       </div>
     </div>
-
-    <!-- Blog auth gating temporarily disabled for current testing phase:
-    <div id="auth-modal" class="auth-modal hidden">
-      <div class="auth-card">
-        <h3>Secure access</h3>
-        <p>
-          Sign in to open this post. Your blog stays visible in the background.
-        </p>
-        <input id="auth-email" placeholder="Email" />
-        <input id="auth-password" type="password" placeholder="Password" />
-        <button id="auth-submit">Unlock</button>
-        <div class="secondary" id="auth-cancel">Continue browsing</div>
-        <div class="auth-status" id="auth-status"></div>
-      </div>
-    </div>
-    -->
-
-    <script>
-      /*
-      const modal = document.getElementById("auth-modal");
-      const appShell = document.getElementById("app-shell");
-      const statusEl = document.getElementById("auth-status");
-
-      function showModal() {
-        modal.classList.remove("hidden");
-        appShell.classList.add("dimmed");
-        document.body.style.overflow = "hidden";
-      }
-
-      function hideModal() {
-        modal.classList.add("hidden");
-        appShell.classList.remove("dimmed");
-        document.body.style.overflow = "";
-        if (statusEl) {
-          statusEl.textContent = "";
-        }
-      }
-
-      window.showAuthModal = showModal;
-      window.hideAuthModal = hideModal;
-      window.pendingAuthUrl = null;
-
-      document.addEventListener("click", (event) => {
-        const card = event.target.closest("a.card");
-        if (!card) return;
-
-        event.preventDefault();
-        window.pendingAuthUrl = card.getAttribute("href");
-        showModal();
-      });
-      */
-    </script>
-
-    <!-- Firebase authentication module temporarily disabled for current testing phase:
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-      import {
-        getAuth,
-        onAuthStateChanged,
-        signInWithEmailAndPassword,
-      } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyDNdgYedYk2yI3VsH58Ao3HF1A1UWMamD0",
-        authDomain: "sanity-blog-auth.firebaseapp.com",
-        projectId: "sanity-blog-auth",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      let currentUser = null;
-
-      const emailInput = document.getElementById("auth-email");
-      const passwordInput = document.getElementById("auth-password");
-      const submitBtn = document.getElementById("auth-submit");
-      const cancelBtn = document.getElementById("auth-cancel");
-      const statusEl = document.getElementById("auth-status");
-
-      async function handleSignIn() {
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
-        statusEl.textContent = "";
-
-        if (!email || !password) {
-          statusEl.textContent = "Please enter both email and password.";
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Signing in...";
-
-        try {
-          await signInWithEmailAndPassword(auth, email, password);
-          if (window.pendingAuthUrl) {
-            window.location.href = window.pendingAuthUrl;
-            return;
-          }
-          window.hideAuthModal();
-        } catch (error) {
-          statusEl.textContent = error.message || "Sign-in failed.";
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Unlock";
-        }
-      }
-
-      submitBtn.addEventListener("click", handleSignIn);
-      cancelBtn.addEventListener("click", () => {
-        window.pendingAuthUrl = null;
-        window.hideAuthModal();
-      });
-      document
-        .getElementById("auth-modal")
-        .addEventListener("click", (event) => {
-          if (event.target === document.getElementById("auth-modal")) {
-            window.pendingAuthUrl = null;
-            window.hideAuthModal();
-          }
-        });
-
-      onAuthStateChanged(auth, (user) => {
-        currentUser = user;
-        if (!user) {
-          return;
-        }
-        window.hideAuthModal();
-      });
-    </script>
-    -->
 
     <script>
       const PROJECT_ID = "xsd8o1za";
       const DATASET = "production";
 
       const QUERY =
-        encodeURIComponent(`*[_type == "post" && (!defined(postType) || postType == "blog")]{
+        encodeURIComponent(`*[_type == "post" && postType == "journal"]{
       _id, title, slug, publishedAt, _createdAt, excerpt, readingTime,
       "authorName": author->name,
       "authorImage": author->image.asset->url,
@@ -679,7 +466,6 @@
       let activeCategory = null;
       let activeTag = null;
 
-      // Theme toggle
       function toggleTheme() {
         const html = document.documentElement;
         const isDark = html.getAttribute("data-theme") === "dark";
@@ -690,7 +476,6 @@
         localStorage.setItem("theme", isDark ? "light" : "dark");
       }
 
-      // Load saved theme
       const savedTheme = localStorage.getItem("theme") || "light";
       document.documentElement.setAttribute("data-theme", savedTheme);
       if (savedTheme === "dark")
@@ -733,34 +518,34 @@
         container.innerHTML = posts
           .map(
             (post) => `
-        <a class="card" href="post.html?slug=${post.slug?.current}">
-          ${post.imageUrl ? `<img src="${post.imageUrl}" alt="${post.title}" />` : ""}
-          <div class="card-body">
-            ${
-              post.categories?.length
-                ? `
-              <div class="card-cats">
-                ${post.categories.map((cat) => `<span class="card-cat">${cat}</span>`).join("")}
-              </div>`
-                : ""
-            }
-            <h3>${post.title}</h3>
-            <p>${post.excerpt || post.body?.[0]?.children?.[0]?.text || ""}</p>
-            <div class="card-footer">
-              <div class="author">
-                <div class="author-avatar">
-                  ${post.authorImage ? `<img src="${post.authorImage}" alt="${post.authorName}" />` : initials(post.authorName)}
+              <a class="card" href="post.html?slug=${post.slug?.current}">
+                ${post.imageUrl ? `<img src="${post.imageUrl}" alt="${post.title}" />` : ""}
+                <div class="card-body">
+                  ${
+                    post.categories?.length
+                      ? `
+                    <div class="card-cats">
+                      ${post.categories.map((cat) => `<span class="card-cat">${cat}</span>`).join("")}
+                    </div>`
+                      : ""
+                  }
+                  <h3>${post.title}</h3>
+                  <p>${post.excerpt || post.body?.[0]?.children?.[0]?.text || ""}</p>
+                  <div class="card-footer">
+                    <div class="author">
+                      <div class="author-avatar">
+                        ${post.authorImage ? `<img src="${post.authorImage}" alt="${post.authorName}" />` : initials(post.authorName)}
+                      </div>
+                      <span class="author-name">${post.authorName || "Unknown"}</span>
+                    </div>
+                    <div class="card-meta">
+                      ${post.readingTime ? `<span class="reading-time">⏱ ${post.readingTime} min</span>` : ""}
+                      <span class="date-str">📅 ${timeAgo(post.publishedAt || post._createdAt)}</span>
+                    </div>
+                  </div>
                 </div>
-                <span class="author-name">${post.authorName || "Unknown"}</span>
-              </div>
-              <div class="card-meta">
-                ${post.readingTime ? `<span class="reading-time">⏱ ${post.readingTime} min</span>` : ""}
-                <span class="date-str">📅 ${timeAgo(post.publishedAt || post._createdAt)}</span>
-              </div>
-            </div>
-          </div>
-        </a>
-      `,
+              </a>
+            `,
           )
           .join("");
       }
@@ -817,14 +602,10 @@
         filterPosts();
       }
 
-      function toggleSection(btn, isTagSection = false) {
+      function toggleSection(btn) {
         btn.classList.toggle("open");
         const body = btn.nextElementSibling;
-        if (isTagSection) {
-          body.classList.toggle("open");
-        } else {
-          body.classList.toggle("open");
-        }
+        body.classList.toggle("open");
       }
 
       fetch(API_URL)
@@ -835,8 +616,8 @@
           renderPosts(allPosts);
         })
         .catch(() => {
-          document.getElementById("status").textContent =
-            "Failed to load posts.";
+          document.getElementById("posts").innerHTML =
+            '<p id="status">Failed to load journal posts.</p>';
         });
     </script>
   </body>
